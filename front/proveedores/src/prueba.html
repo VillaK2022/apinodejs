@@ -1,0 +1,352 @@
+<template>
+
+    <body ref="pdfContent">
+        <header style="margin-top: 5%;">
+            <div class="cabecera">
+                <table width="100%" cellspacing="1">
+                    <tr>
+                        <td colspan="1">
+                            <table width="100%" cellspacing="0" style="align-items:start; margin-right: 30px;">
+                                <tr>
+                                    <td colspan="1">
+                                        <img src="../assets/img/bmontes1.jpg"
+                                            style="width:40px; height:38px; top:0; left:0; padding-top:0;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td colspan="2">
+                            <table width="30%" cellspacing="0">
+                                <tr>
+                                    <td><strong>GRUPO: {{ }}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>RIF: {{ }}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fecha: {{}} - Hora: {{}}</strong></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <footer>
+            <table width="100%" cellpadding="3" cellspacing="3">
+                <tr>
+                    <td align="center">
+                        <strong>______________________________________________________________________</strong></td>
+                    <td align="left"><strong>RECIBIDO CONFORME: __________________________________________</strong></td>
+                </tr>
+                <tr>
+                    <td align="center"><strong>FIRMA Y SELLO DEL AGENTE DE RETENCIÓN</strong></td>
+                    <td align="left"><strong>FECHA DE ENTREGA: ____________________________________________</strong>
+                    </td>
+                </tr>
+            </table>
+        </footer>
+        <br><br>
+        <main>
+            <table width="30%" cellpadding="2" cellspacing="2" border="1" align="center">
+                <tr>
+                    <td align="center"><strong>Número de Comprobante: </strong></td>
+                    <td align="center"><strong>Periodo Fiscal: </strong></td>
+                    <td align="center"><strong>Fecha de Emisión: </strong></td>
+                </tr>
+                <tr>
+                    <td align="center"><strong>{{ }}</strong></td>
+                    <td align="center"><strong>Año: {{}} Mes: {{}}</strong></td>
+                    <td align="center"><strong>{{}}</strong></td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center">|
+                <tr>
+                    <td align="center">
+                        <h1 class="letra-grande"><strong>COMPROBANTE DE RETENCIÓN DEL IMPUESTO AL VALOR
+                                AGREGADO</strong></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h5><strong>Ley del Impuesto al Valor Agregado - Art 11: "Seran responsables del pago del
+                                Impuesto en calidad de agentes de retención, los compradores o adquirientes de
+                                determinados bienes muebles y los receptores de ciertos designe como tal".</strong></h5>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" style="position: relative;" class="clase_table">
+                <tr>
+                    <td>
+                        <table width="100%" cellpadding="3" cellspacing="3" style="position: relative;"
+                            class="clase_table">
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <h1 class="letra-grande"><strong>Datos del Agente de Retención</strong></h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>NOMBRE O RAZÓN SOCIAL: </strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NÚMERO DE RIF:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DIRECCIÓN:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NÚMERO DE TELÉFONO:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table width="100%" cellpadding="3" cellspacing="3" style="position: relative;"
+                            class="clase_table">
+                            <tr>
+                                <td align="left" colspan="2">
+                                    <h1 class="letra-grande"><strong>Datos del Contribuyente</strong></h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>NOMBRE O RAZÓN SOCIAL: </strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NÚMERO DE RIF:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DIRECCIÓN:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NÚMERO DE TELÉFONO:</strong></td>
+                                <td>{{ }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <br></br>
+            <table width="100%" cellpadding="1" cellspacing="1" style="position: relative;" class="clase_table">
+                <thead style="background-color: lightgray;">
+                    <tr>
+                        <th>Fecha de Documento</th>
+                        <th>Número de Factura</th>
+                        <th>Número Control de Factura</th>
+                        <th>Número Nota Debito</th>
+                        <th>Número Nota Credito</th>
+                        <th>Número Fac. Relacionada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center"><span>{{ }}</span></td>
+                        <td align="center"><span>{{ }}</span></td>
+                        <td align="center"><span>{{ }}</span></td>
+                        <td align="center"><span></span></td>
+                        <td align="center"><span></span></td>
+                        <td align="center"><span></span></td>
+                    </tr>
+                </tbody>
+                <thead style="background-color: lightgray;">
+                    <tr>
+                        <th>Monto Factura IVA Incluido</th>
+                        <th>Monto Facturado Exento IVA</th>
+                        <th>Monto Base IVA</th>
+                        <th>% IVA</th>
+                        <th>Monto IVA</th>
+                        <th>% Retención</th>
+                        <th>IVA Retenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td align="right">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="right">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="right">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="center">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="right">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="center">
+                            <span>{{ }}</span>
+                        </td>
+                        <td align="right">
+                            <span>{{ }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td align="right"><strong>___________________________</strong></td>
+                        <td align="right"><strong>___________________________</strong></td>
+                        <td align="right"><strong>___________________________</strong></td>
+                        <td align="right"></td>
+                        <td align="right"><strong>___________________________</strong></td>
+                        <td align="right"></td>
+                        <td align="right"><strong>___________________________</strong></td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="letra-pequena">
+                            <span><strong>{{ }}</strong></span>
+                        </td>
+                        <td align="right" class="letra-pequena">
+                            <span><strong>{{ }}</strong></span>
+                        </td>
+                        <td align="right" class="letra-pequena">
+                            <span><strong>{{}}</strong></span>
+                        </td>
+                        <td align="center"><span></span></td>
+                        <td align="right" class="letra-pequena">
+                            <span><strong>{{ }}</strong></span>
+                        </td>
+                        <td align="center"><span></span></td>
+                        <td align="right" class="letra-pequena">
+                            <span><strong>{{ }}</strong></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</template>
+<script setup>
+import { ref, reactive } from 'vue';
+const pdfContent = ref(null);
+const datos = reactive({
+    titulo: 'Título por defecto',
+    contenido: 'Contenido por defecto',
+    fecha: new Date(),
+    datosEspecificos: 'datos'
+});
+// Función para actualizar los datos del PDF
+const actualizarDatosPdf = (nuevosDatos) => {
+    Object.assign(datos, nuevosDatos);
+};
+defineExpose({
+    actualizarDatosPdf
+});
+</script>
+<style scoped>
+@page {
+    margin: 2rem;
+    margin-top: 1.5cm;
+    margin-bottom: 1.5cm;
+    padding: .1rem;
+    font-size: .5rem !important;
+}
+
+body {
+    margin: 0px;
+}
+
+* {
+    font-family: verdana, arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    top: -30px;
+    left: 0px;
+    right: 0px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: white;
+    text-align: center;
+}
+
+p {
+    page-break-after: always;
+}
+
+p:last-child {
+    page-break-after: never;
+}
+
+main {
+    position: relative;
+    top: 5px;
+    bottom: 110px;
+    left: 0px;
+    right: 0px;
+    margin-left: .4cm !important;
+    margin-right: .4cm !important;
+}
+
+.cabecera {
+    background-color: #FEFEFE;
+    color: #000000;
+    padding: 2rem;
+    padding-top: .2rem;
+    padding-bottom: 0px;
+}
+
+.cabecera .logo {
+    margin: 5px;
+}
+
+.cabecera table {
+    padding: 1px;
+    margin-bottom: .2rem;
+}
+
+table {
+    font-size: x-small
+}
+
+tfoot tr td {
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.clase_table {
+    border-collapse: separate;
+    border-spacing: 10;
+    border: 1px solid black;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    padding: 3px;
+}
+
+.total {
+    width: 100%;
+    /* background-color: #FFF; */
+    text-align: right;
+    padding-right: 2rem !important;
+    font-size: 1.5rem !important;
+    position: fixed;
+    bottom: 15px;
+}
+
+.letra-grande {
+    font-size: 12px !important;
+}
+
+.letra-mediana {
+    font-size: 15px !important;
+}
+
+.letra-pequena {
+    font-size: 10px !important;
+}
+</style>
