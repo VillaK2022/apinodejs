@@ -142,7 +142,7 @@
                                     <template v-else>
                                         <tr>
                                             <td :colspan="table.campos_mostrar.length + 1" class="text-center">No hay
-                                                detalles para mostrar</td>
+                                                detalles para mostrar.</td>
                                         </tr>
                                     </template>
                                 </tbody>
