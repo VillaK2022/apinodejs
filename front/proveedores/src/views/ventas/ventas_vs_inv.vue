@@ -169,7 +169,6 @@
                 </div>
             </div>
         </section>
-
         <!-- dialog codigo -->
         <section>
             <el-dialog :close-on-press-escape="false" :close-on-click-modal ="false"  v-model="modal_codigo" id="modalbarra" title="Barras asociadas" width="30%" center>

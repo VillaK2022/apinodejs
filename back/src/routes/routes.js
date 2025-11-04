@@ -4,10 +4,10 @@ import { cargar_retenciones, export_retenciones, excel_retenciones } from "../co
 import { cargar_pagos, export_pagos, excel_pagos } from "../controllers/pagos.controllers.js";
 import { getdatos, actualizartercero, cambiarpassword, getdatos_obligatorio, getdatos_todos } from "../controllers/datos.controllers.js";
 import { tablaconsultar } from "../controllers/tabla.controllers.js";
-import { menu } from "../controllers/menu_proveedores.controllers.js";
+import { menu } from "../controllers/menu_tercero.controllers.js";
 import { tiendas } from "../controllers/org_tiendas.controllers.js";
 import { existencia, excel_inv} from "../controllers/inventario.controllers.js";
-import { mbarra_codigo } from "../controllers/articulos_barras.controllers.js";
+import { mbarra_codigo, actualizar_mcodigobarra_cod_tercero } from "../controllers/articulos_barras.controllers.js";
 import { ventas_existencia,excel_venta_vs_inv, ventas_x_periodo, excel_venta_x_periodo } from "../controllers/ventas.controllers.js";
 import { getusers, getuser, createuser, deleteuser, updateuser } from "../controllers/user.controllers.js";
 const router = Router();
@@ -55,7 +55,7 @@ router.get('/export_pagos', export_pagos);
 // --------------------------- tabla ------------------------------------------------------------
 router.post('/tabla', tablaconsultar);
 
-//-----------------------------Menu_proveedores -------------------------------------------------
+//-----------------------------Menu_tercero -------------------------------------------------
 router.get('/menu', menu);
 
 //-----------------------------Controlador para tienda y organización -------------------------------------------------
@@ -69,6 +69,7 @@ router.get('/ventas_x_periodo', ventas_x_periodo);
 
 // ----------------------------- Articulos, barras y codigos -------------------------------------------------------------
 router.get('/mbarra_codigo', mbarra_codigo);
+router.get('/actualizar_mcodigobarra_cod_tercero', actualizar_mcodigobarra_cod_tercero);
 
 
 //----------------------------- EXCELS -----------------------------------------------------------------------------------

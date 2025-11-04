@@ -250,7 +250,7 @@ const exportar = async () => {
         if (error.response && error.response.status === 300) {
             // Nota: El servidor ya no envía 300, así que esto no debería ocurrir.
             let msg = (error.response.data?.message || 'Error al obtener los datos')
-            emit('notification', msg, 'warning', 'Datos faltantes');
+            emit('notification', msg, 'warning', 'Error al obtener los datos');
         } else if (error.response && error.response.status === 404) {
             let msg = (error.response.data?.message || 'Revisar ')
             emit('notification', msg, 'info', 'No se encontraron datos con los filtros');
@@ -377,7 +377,7 @@ const buscar_retenciones = async () => {
         fullscreenLoading.value = false
     } catch (error) {
         fullscreenLoading.value = false;
-        console.error('Error al guardar datos de 3ro:', error)
+        console.error('Datos no encontrados:', error)
         // El servidor respondió con un código de error
         if (error.response && error.response.status === 300) {
             let msg = (error.response.data?.message || 'Error al obtener los datos')
