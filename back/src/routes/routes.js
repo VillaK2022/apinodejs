@@ -69,7 +69,7 @@ router.get('/ventas_x_periodo', ventas_x_periodo);
 
 // ----------------------------- Articulos, barras y codigos -------------------------------------------------------------
 router.get('/mbarra_codigo', mbarra_codigo);
-router.get('/actualizar_mcodigobarra_cod_tercero', actualizar_mcodigobarra_cod_tercero);
+router.put('/actualizar_mcodigobarra_cod_tercero', actualizar_mcodigobarra_cod_tercero);
 
 
 //----------------------------- EXCELS -----------------------------------------------------------------------------------

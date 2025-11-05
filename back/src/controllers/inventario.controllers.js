@@ -29,7 +29,7 @@ export const existencia = async (req, res) => {
                 ORDER BY 5 desc`                
         const { rows } = await
             pool.query(query);
-            console.log(query);
+            // console.log(query);
             
         if (rows.length === 0) {
             return res.status(300).json({ message: "No fue posible encontrar inv con los datos solicitados" })
@@ -56,7 +56,7 @@ export const excel_inv = async (req, res) => {
         // console.log("data.datos", data.datos);
         return excelBasico(req, res, data.titulo, columnas, data.datos, data.fecha);
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(400).json({ message: "Error", error: error });
     }
 }

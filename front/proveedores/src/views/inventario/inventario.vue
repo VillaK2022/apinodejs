@@ -167,23 +167,27 @@
         </section>
         <!-- dialog codigo -->
         <section>
-            <el-dialog :close-on-press-escape="false" :close-on-click-modal ="false"  v-model="modal_codigo" id="modalbarra" title="Barras asociadas" width="30%" center>
-                <div v-if="!!inputs.item[0]">
-                    <span style="font-size: 13px;">{{ inputs.item[0].articulo }}</span>
-                    <br>
-                    <br>
-                        <el-table :data="inputs.item" style="width: 100%">
-                            <el-table-column prop="descripcion" label="Descripción" />
-                            <el-table-column prop="barra" label="Barra" />
-                        </el-table>
-                    <br>
-                    <br>
+            <el-dialog :close-on-press-escape="false" :close-on-click-modal="false" v-model="modal_codigo" id="modalbarra" title="Barras asociadas" width="40%" center>
+                <div v-if="Array.isArray(inputs.item) && inputs.item.length">
+                    <span style="font-size:13px">{{ inputs.item[0].articulo }}</span>
+                    <el-table id="tablabarra" :data="inputs.item" style="width:100%" class="mt-4">
+                        <el-table-column prop="descripcion" label="Descripción" />
+                        <el-table-column prop="barra" label="Barra" />
+                        <el-table-column prop="cod_tercero" label="Principal">
+                            <template #default="{ row }">
+                                <el-popconfirm @confirm="principal(row, inputs.item)" class="box-item"
+                                    title="¿Agregar este codigo como principal?" placement="bottom">
+                                    <template #reference>
+                                        <el-button :disabled="row.cod_tercero == 1"
+                                            :type="row.cod_tercero == 1 ? 'primary' : 'info'" size="small">
+                                            {{ row.cod_tercero == 1 ? 'Si' : 'No' }}
+                                        </el-button>
+                                    </template>
+                                </el-popconfirm>
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
-                <template #footer>
-                    <div class="dialog-footer d-flex justify-content-end" >
-                        <el-button type="info" plain @click="modal_codigo = false">Cerrar</el-button>
-                    </div>
-                </template>
             </el-dialog>
         </section>
     </body>
@@ -358,12 +362,10 @@
         loading_msg.value = "Cargando Datos... Por favor espere";
         fullscreenLoading.value = true;
         try {
-
             const response = await axios.get(`/tiendas`);
             inputs.tiendas = response.data
             fullscreenLoading.value = false;
         } catch (error) {
-            console.log(error)
             fullscreenLoading.value = false;
             if (error.response && error.response.status === 300) {
                 let msg = (error.response.data?.message || 'Error al obtener los datos')
@@ -442,44 +444,65 @@
             table.orderByDetail = { item: item, order: 'asc' };
         }
     };
+    const principal = async (item, array) => {
+    if (fullscreenLoading.value) return;
+    fullscreenLoading.value = true;
+    try {
+      const value = {
+        params: {
+          item: item,
+          array: array,
+          _t: new Date().getTime()
+        }
+      }
+      await axios.put(`/actualizar_mcodigobarra_cod_tercero`, value);
+      array.forEach(e => e.cod_tercero = 0);
+      const d = array.find(e => e.id == item.id);
+      d.cod_tercero = 1;
+      fullscreenLoading.value = false;
+      emit('notification', '🥳', 'success', 'Barra agregada como principal');
+    } catch (error) {
+      fullscreenLoading.value = false;
+      emit('notification', '❌', 'warning', 'No fue posible agregar barra como principal');
+    }
+    }
     const modalcodigo = async (item) => {
         if (fullscreenLoading.value) return;
         fullscreenLoading.value = true;
-        loading_msg.value = "Cargando Datos... Por favor espere";
         try {
-            const value = {
-                params: {
-                    item: item.codigo,
-                    _t: new Date().getTime()
-                }
-            };
-            const response = await axios.get(`/mbarra_codigo`, value);
-            inputs.item = response.data            
-            modal_codigo.value = true
-            fullscreenLoading.value = false;
-        } catch (error) {
-            fullscreenLoading.value = false;
-            console.warn('Error al cargar datos:', error)
-            // El servidor respondió con un código de error
-            if (error.response && error.response.status === 300) {
-                fullscreenLoading.value = false;
-                let msg = (error.response.data?.message || 'Error al obtener los datos')
-                emit('notification', msg, 'warning', 'Datos faltantes');
-            } else if (error.response && error.response.status === 404) {
-                fullscreenLoading.value = false;
-                let msg = (error.response.data?.message || 'Revisar ')
-                emit('notification', msg, 'info', 'No se encontraron datos con los filtros');
-            } else if (error.response && error.response.status === 500) {
-                let msg = 'Error interno del servidor'
-                emit('notification', msg, 'warning', 'Error interno del servidor');
-            } else if (error.response && error.response.status === 400) {
-                let msg = 'Intenta nuevamente en unos minutos'
-                emit('notification', msg, 'warning', 'Datos faltantes');
-            } else {
-                fullscreenLoading.value = false
-                let msg = error.response.data?.message || 'Error'
-                emit('notification', msg, 'warning', 'Error');
+        const value = {
+            params: {
+            item: item.codigo,
+            _t: new Date().getTime()
             }
+        };
+        const respuesta = await axios.get(`/mbarra_codigo`, value);        
+        inputs.item = respuesta.data
+        modal_codigo.value = true
+        fullscreenLoading.value = false;
+        } catch (error) {
+        fullscreenLoading.value = false;
+        console.warn('Error al cargar datos:', error)
+        // El servidor respondió con un código de error
+        if (error.respuesta && error.respuesta.status === 300) {
+            fullscreenLoading.value = false;
+            let msg = (error.respuesta.data?.message || 'Error al obtener los datos')
+            emit('notification', msg, 'warning', 'Datos faltantes');
+        } else if (error.respuesta && error.respuesta.status === 404) {
+            fullscreenLoading.value = false;
+            let msg = (error.respuesta.data?.message || 'Revisar ')
+            emit('notification', msg, 'info', 'No se encontraron datos con los filtros');
+        } else if (error.respuesta && error.respuesta.status === 500) {
+            let msg = 'Error interno del servidor'
+            emit('notification', msg, 'warning', 'Error interno del servidor');
+        } else if (error.respuesta && error.respuesta.status === 400) {
+            let msg = 'Intenta nuevamente en unos minutos'
+            emit('notification', msg, 'warning', 'Datos faltantes');
+        } else {
+            fullscreenLoading.value = false
+            let msg = error.respuesta.data?.message || 'Error'
+            emit('notification', msg, 'warning', 'Error');
+        }
         }
     }
     const limpiar = async () => {
