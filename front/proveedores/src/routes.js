@@ -81,6 +81,13 @@ const routes = [
     component: () => import('./views/pagos/pagos.vue'),
     meta: { requiresAuth: true }
   },
+  //-----------------------barras_desc--------------------------------------------
+  {
+    path: '/barras_desc',
+    name: 'barras_desc',
+    component: () => import('./views/barras_desc/barras_desc.vue'),
+    meta: { requiresAuth: true }
+  },
 
 
   //----------------------menu lateral---------------------------------------

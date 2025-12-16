@@ -6,7 +6,8 @@ import { useAuthStore } from '@/stores/auth'
 import routes from './routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faFileExcel, faPlus, faUser, faBars, faHome, faCodeBranch, faEllipsis, faDeleteLeft, faCashRegister, faCartArrowDown, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faFileExcel, faPlus, faUser, faBars, faHome, faCodeBranch, faEllipsis, faDeleteLeft, faCashRegister, 
+faCartArrowDown, faCartShopping, faBarcode } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarMinus,faCalendar, faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import ElementPlus from 'element-plus';
@@ -22,7 +23,7 @@ const router = createRouter({
 });
 
 library.add(faBars, faHome, faCodeBranch, faEllipsis, faTwitter, faFileExcel, faDeleteLeft, faPlus, faUser, faCalendar,
-faCalendarMinus, faCashRegister, faEnvelope, faCartArrowDown, faCartShopping);
+faCalendarMinus, faCashRegister, faEnvelope, faCartArrowDown, faCartShopping, faBarcode);
 
 // GUARDIA DE NAVEGACIÓN - Esto se ejecuta antes de cada cambio de ruta
 

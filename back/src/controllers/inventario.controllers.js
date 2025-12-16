@@ -14,7 +14,8 @@ export const existencia = async (req, res) => {
             case '3': operador = `AND ROUND(exi.cantidad_cargo + exi.consignacion - exi.cantidad_descargo, 2) = 0`; break;
             case '4': operador = `AND ROUND(exi.cantidad_cargo + exi.consignacion - exi.cantidad_descargo, 2) < 0`;; break;
         }
-        const query = `SELECT org.name AS organizacion, tie.descripcion AS tiendas, alm.descripcion AS almacen, art.descripcion AS articulo, 
+        const query = `SELECT org.name AS organizacion, tie.descripcion AS tiendas, alm.descripcion AS almacen, 
+                COALESCE(NULLIF(art.desc_tercero, ''), art.descripcion) as articulo, 
                 ROUND(exi.cantidad_cargo + exi.consignacion - exi.cantidad_descargo, 2) AS existencia, art.codigo as codigo
                 FROM marticuloprovee  AS arp
                 JOIN kardexexistencia AS exi ON exi.articulo_id = arp.articulo_id

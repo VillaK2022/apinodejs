@@ -8,6 +8,7 @@ export const ventas_existencia = async (req, res) => {
         const data = req.query;
         const proveedor = data.id_proveedor;
         const searchtienda = data.tienda;
+        // COALESCE(NULLIF(c.desc_tercero, ''), c.descripcion) as articulo
         const query = `SELECT departamento, grupo, subgrupo, descripcion, cant1, cant2, cant3, existencia, 
         proyeccion_ventas, promedio_diario, dias_inventario, fecha_maxima, dias_sin_ventas, unidades_sin_vender, ncodigo,
         valor_sin_ventas, (cant1 + cant2 + cant3) AS cantidades
@@ -72,8 +73,8 @@ export const ventas_x_periodo= async (req, res) => {
                             ventas_xperiodo.tienda_id, 
                             ventas_xperiodo.nombre_punto as tienda, 
                             ventas_xperiodo.codigo_producto, 
-                            ventas_xperiodo.codigo_ean, 
-                            ventas_xperiodo.producto, 
+                            ventas_xperiodo.codigo_ean,
+                            COALESCE(NULLIF(marticulo.desc_tercero, ''), ventas_xperiodo.producto) as producto, 
                             ventas_xperiodo.cantidad_kd, 
                             ventas_xperiodo.venta_unidades
                             FROM ventas_xperiodo
